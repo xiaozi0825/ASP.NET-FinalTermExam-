@@ -1,0 +1,104 @@
+﻿@model aspnetFinalTermExam.Models.Employees
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>1102137212 蔡易志</title>
+</head>
+<body>
+    @using (Html.BeginForm("Index", "Employee", FormMethod.Post, new { id = "Form1" }))
+    {
+
+        <div>
+            <h3>查詢員工</h3>
+        </div>
+        <div>
+            <table class="table" style="width:75%">
+                <tr>
+                    <td>訂單編號</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.EmployeeID)</td>
+                </tr>
+                <tr>
+                    <td>員工姓名</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.LastName)</td>
+                </tr>
+                <tr>
+                    <td>職稱</td>
+                    <td colspan="3">@Html.DropDownListFor(Models => Models.Title, (List<SelectListItem>)ViewData["CodeTableData"])</td>
+                </tr>
+                <tr>
+                    <td>任職日期</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.HireDate,new { @type = "date" })</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        <input type="submit" value="查詢" />
+                        <input type="reset" value="清除" />
+                        @Html.ActionLink("新增員工", "../Customers/InsertIndex")
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <h3>查詢結果</h3>
+        </div>
+        <div>
+            @if (ViewBag.Employeedata != null)
+            {
+                <table class="table" style="width:75%">
+                    <tr>
+                        <td colspan="3">編號</td>
+                        <td colspan="3">姓名</td>
+                        <td colspan="3">職稱</td>
+                        <td colspan="3">任職日期</td>
+                        <td colspan="3">性別</td>
+                        <td colspan="3">年齡</td>
+                    </tr>
+                    @foreach (var item in (List<aspnetFinalTermExam.Models.Employees>)ViewBag.Employeedata)
+                    {
+                        <tr id='@item.EmployeeID'>
+                            <td colspan="3">@item.EmployeeID</td>
+                            <td colspan="3">@item.LastName</td>
+
+                            <td colspan="3">@item.Title</td>
+                            <td colspan="3">@item.HireDate</td>
+                            <td colspan="3">@item.Gender</td>
+                            <td colspan="3">@item.BirthDate</td>
+                            <td>
+                                <a class="btnDelete" href="#">刪除</a>
+                                <input class="hidOrderId" type="hidden" value='@item.EmployeeID' />
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+          </div>
+    }
+    <script type="text/javascript">
+
+
+        $(".btnDelete").click(function (e) {
+
+            var tr = $(this).closest('tr')
+            $.ajax({
+                type: "POST",
+                url: "/Employees/DeleteEmployee",
+                data: "EmployeeID=" + $(this).next().val(),
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    $(tr).remove();
+                }
+            });
+            return false;
+        });
+
+    </script>
+</body>
+</html>

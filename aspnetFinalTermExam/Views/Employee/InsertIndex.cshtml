@@ -1,0 +1,89 @@
+﻿@model aspnetFinalTermExam.Models.Employees
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>1102137212 蔡易志</title>
+</head>
+<body>
+    @using (Html.BeginForm("InsertEmployees", "Employee", FormMethod.Post, new { id = "Form2" }))
+    {
+
+        <div>
+            <h3>新增員工</h3>
+        </div>
+        <div>
+            <table class="table" style="width:75%">
+                <tr>
+                    <td>姓名(First Name)</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.FirstName)</td>
+                </tr>
+                <tr>
+                    <td>姓名(Last Name)</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.LastName)</td>
+                </tr>
+                <tr>
+                    <td>職稱</td>
+                    <td colspan="3">@Html.DropDownListFor(Models => Models.Title, (List<SelectListItem>)ViewData["CodeTableData"])</td>
+                </tr>
+                <tr>
+                    <td>稱謂</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.TitleOfCourtesy)</td>
+                </tr>
+                <tr>
+                    <td>任職日期</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.HireDate, new { @type = "date" })</td>
+                </tr>
+                <tr>
+                    <td>生日</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.BirthDate, new { @type = "date" })</td>
+                </tr>
+                <tr>
+                    <td>國家</td>
+                    <td colspan="3">@Html.DropDownListFor(Models => Models.Country, (List<SelectListItem>)ViewData["CountryData"])</td>
+                </tr>
+                <tr>
+                    <td>城市</td>
+                    <td colspan="3">@Html.DropDownListFor(Models => Models.City, (List<SelectListItem>)ViewData["CityData"])</td>
+                </tr>
+                <tr>
+                    <td>地址</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.Address)</td>
+                </tr>
+                <tr>
+                    <td>電話</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.Phone)</td>
+                </tr>
+                <tr>
+                    <td>性別</td>
+                    <td colspan="3">@Html.DropDownListFor(Models => Models.Gender, (List<SelectListItem>)ViewData["GenderData"])</td>
+                </tr>
+                <tr>
+                    <td>直屬主管</td>
+                    <td colspan="3">@Html.DropDownListFor(Models => Models.ManagerID, (List<SelectListItem>)ViewData["ManagerIDData"])</td>
+                </tr>
+                <tr>
+                    <td>月薪</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.MonthlyPayment)</td>
+                </tr>
+                <tr>
+                    <td>年薪</td>
+                    <td colspan="3">@Html.TextBoxFor(Models => Models.YearlyPayment)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        <input type="submit" value="存檔" />
+                        <input type="reset" value="回前一頁" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+            }
+</body>
+</html>

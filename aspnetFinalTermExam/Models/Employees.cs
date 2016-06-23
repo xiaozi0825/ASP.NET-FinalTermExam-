@@ -17,7 +17,7 @@ namespace aspnetFinalTermExam.Models
         }
 
         [Key]
-        public int EmployeeID { get; set; }
+        public string EmployeeID { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -35,9 +35,9 @@ namespace aspnetFinalTermExam.Models
         [StringLength(25)]
         public string TitleOfCourtesy { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        public string BirthDate { get; set; }
 
-        public DateTime HireDate { get; set; }
+        public string HireDate { get; set; }
 
         [Required]
         [StringLength(60)]
@@ -58,14 +58,14 @@ namespace aspnetFinalTermExam.Models
         [StringLength(24)]
         public string Phone { get; set; }
 
-        public int? ManagerID { get; set; }
+        public string ManagerID { get; set; }
 
         [StringLength(2)]
         public string Gender { get; set; }
 
-        public int? MonthlyPayment { get; set; }
+        public string MonthlyPayment { get; set; }
 
-        public int? YearlyPayment { get; set; }
+        public string YearlyPayment { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employees> Employees1 { get; set; }
