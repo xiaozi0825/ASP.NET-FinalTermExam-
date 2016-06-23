@@ -288,6 +288,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\InsertIndex.cshtml" />
+    <Content Include="word\1102137212蔡易志_FinalTermExam.docx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
